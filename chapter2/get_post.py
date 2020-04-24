@@ -37,7 +37,6 @@ class Youdao():
     def get_salt(self):
         return self.ts + str(random.randint(0, 10))
 
-
     def yield_form_data(self):
         return {
             'i': self.content,
@@ -63,14 +62,16 @@ class Youdao():
         }
 
     def fanyi(self):
-        response = requests.post(self.url,data=self.yield_form_data(),headers=self.yield_headers())
+        response = requests.post(self.url, data=self.yield_form_data(), headers=self.yield_headers())
         content = json.loads(response.text)
         return content['translateResult'][0][0]['tgt']
 
 
 if __name__ == '__main__':
-    while(True):
-        t=input('please input :')
-        youdao = Youdao(t)
-        print("fanyi result : ",youdao.fanyi())
-
+    while (True):
+        try:
+            t = input('please input :')
+            youdao = Youdao(t)
+            print("fanyi result : ", youdao.fanyi())
+        except:
+            pass
